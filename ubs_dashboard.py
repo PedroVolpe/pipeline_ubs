@@ -61,7 +61,11 @@ st.title("Histograma da Quantidade de UBS por Município")
 df_histogram = df["Nome_Município"].value_counts().reset_index()
 df_histogram.columns = ["Município", "Quantidade"]
 
-min_ubs = st.slider("Número mínimo de UBS por município", min_value=int(df_histogram["Quantidade"].min()), max_value=int(df_histogram["Quantidade"].max()), value=int(df_histogram["Quantidade"].min()))
+min_ubs = st.slider("Número mínimo de UBS por município", 
+                    min_value=int(df_histogram["Quantidade"].min()), 
+                    max_value=int(df_histogram["Quantidade"].max()), 
+                    value= int(df_histogram["Quantidade"].min()))
+
 df_histogram_filtrado = df_histogram[df_histogram["Quantidade"] >= min_ubs]
 
 fig_histogram = px.histogram(df_histogram_filtrado, x="Município", y="Quantidade", title="Quantidade de UBS por Município", color="Município")
